@@ -1,26 +1,13 @@
-const initalState = {
-    balance: 0,
-    loan: 0,
-    loanPurpose: "",
-}
+import { combineReducers, createStore } from "redux"
+import accountReducer from "./features/accounts/accountSlice";
+import customerReducer from "./features/customers/customerSlice";
 
-// Here in the redux, we can use the default feature of JS to default set the state as initialState, We don't do that in useReducer
-const reducer = (state = initalState, action) => {
-    switch(action.type) {
-        case "account/deposit":
-            return {
-                ...state,
-                balance: state.balance + action.payload
-            }
+const rootReducer = combineReducers({
+    account: accountReducer,
+    customer: customerReducer,
+})
 
-        case "accout/withdraw":
-            return {
-                ...state,
-                balance: state.balance - action.payload
-            }
+// In this way we can create the store and then call dispatch on it.
+const store = createStore(rootReducer);
 
-        default:
-            // In useReducer we throw error here, but in redux it is advised to not throw the error, but simply return the state instead
-            return state;
-    }
-}
+export default store;
