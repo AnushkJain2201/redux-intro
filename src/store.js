@@ -1,14 +1,10 @@
-import { applyMiddleware, combineReducers, createStore } from "redux"
 import accountReducer from "./features/accounts/accountSlice";
 import customerReducer from "./features/customers/customerSlice";
-import {thunk} from "redux-thunk";
+import { configureStore } from "@reduxjs/toolkit";
 
-const rootReducer = combineReducers({
+const store = configureStore({reducer: {
     account: accountReducer,
-    customer: customerReducer,
-})
-
-// In this way we can create the store and then call dispatch on it.
-const store = createStore(rootReducer, applyMiddleware(thunk));
+    customer: customerReducer
+}})
 
 export default store;

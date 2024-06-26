@@ -15,6 +15,7 @@ function AccountOperations() {
   function handleDeposit() {
     if (depositAmount === "") return;
     dispatch(deposit(depositAmount, currency));
+    // dispatch(deposit(depositAmount));
     setDepositAmount("");
     setCurrency("USD");
   }
@@ -90,7 +91,7 @@ function AccountOperations() {
 
         <div>
           <span>Pay back ${account.loan}</span>
-          <button onClick={handlePayLoan}>Pay loan</button>
+          <button onClick={handlePayLoan}>Pay loan {account.loanPurpose}</button>
         </div>
       </div>
     </div>
